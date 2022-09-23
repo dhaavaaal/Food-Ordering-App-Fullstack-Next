@@ -9,6 +9,7 @@ import {
 } from "@paypal/react-paypal-js";
 import { useRouter } from "next/router";
 import { reset } from "../redux/cartSlice";
+import axios from "axios";
 
 const Cart = () => {
   // This values are the props in the UI
@@ -17,23 +18,29 @@ const Cart = () => {
   const currency = "USD";
   const style = { layout: "vertical" };
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const createOrder = async (data) => {
     try {
-      const res = await post.axios("http://localhost:3000/api/orders", data);
+      const res = await axios.post("http://localhost:3000/api/orders", data);
       if (res.status === 201) {
+        console.log("WANTED PART");
+        console.log(
+          res.data._id,
+          +" router.push => " + router.push(`/orders/${res.data._id}`)
+        );
+        router.push(`/orders/${res.data._id}`);
+        // router.push("/orders/" + res.data._id);
         dispatch(reset());
-        router.push("/orders/" + res.data._id);
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  const dispatch = useDispatch();
-  console.log(cart);
-  console.log(cart.product?.extras);
+  // console.log(cart);
+  // console.log(cart.product?.extras);
 
   // Custom component to wrap the PayPalButtons and handle currency changes
   const ButtonWrapper = ({ currency, showSpinner }) => {
@@ -80,7 +87,6 @@ const Cart = () => {
             return actions.order.capture().then(function (details) {
               // Your code here after capture the order
               // console.log(details);
-
               const shipping = details.purchase_units[0].shipping;
               createOrder({
                 customer: shipping.name.full_name,
