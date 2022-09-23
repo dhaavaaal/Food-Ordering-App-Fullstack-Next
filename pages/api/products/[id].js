@@ -28,8 +28,8 @@ export default async function handler(req, res) {
 
   if (method === "DELETE") {
     try {
-      const products = await Product.find();
-      res.status(200).json(products);
+      await Product.findByIdAndDelete(id);
+      res.status(200).json("Product has been deleted!");
     } catch (err) {
       res.status(500).json(err);
     }
