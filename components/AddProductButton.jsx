@@ -1,7 +1,11 @@
-import styles from '../styles/AddProductButton.module.css';
+import styles from "../styles/Add.module.css";
 
-const AddProductButton = () => {
-  return <div className={styles.mainAddButton}>Add New Pizza</div>;
+const AddProductButton = ({ setClose }) => {
+  return (
+    <div onClick={() => setClose(false)} className={styles.mainAddButton}>
+      Add New Pizza
+    </div>
+  );
 };
 
 export default AddProductButton;
