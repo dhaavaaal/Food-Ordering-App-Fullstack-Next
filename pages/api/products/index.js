@@ -4,11 +4,7 @@ import Product from "../../../models/Product";
 export default async function handler(req, res) {
   const { method, cookies } = req;
   const token = cookies.token;
-  console.log("kappu69");
   const db = await dbConnect();
-  console.log(db);
-  //   console.log(global.mongoose);
-  console.log("kalp69");
   if (method === "GET") {
     try {
       // const product = Product.find({title:'pizza1'})

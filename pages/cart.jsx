@@ -27,11 +27,11 @@ const Cart = () => {
     try {
       const res = await axios.post("http://localhost:3000/api/orders", data);
       if (res.status === 201) {
-        console.log("WANTED PART");
-        console.log(
-          res.data._id,
-          +" router.push => " + router.push(`/orders/${res.data._id}`)
-        );
+        // console.log("WANTED PART");
+        // console.log(
+        //   res.data._id,
+        //   +" router.push => " + router.push(`/orders/${res.data._id}`)
+        // );
         router.push(`/orders/${res.data._id}`);
         // router.push("/orders/" + res.data._id);
         dispatch(reset());

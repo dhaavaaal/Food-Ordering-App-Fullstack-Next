@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import styles from '../../styles/Login.module.css';
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import styles from "../../styles/Login.module.css";
 
 const Login = () => {
   const [username, setUsername] = useState(null);
@@ -10,13 +10,13 @@ const Login = () => {
   const router = useRouter();
 
   const handleClick = async () => {
-    console.log(username, password);
+    // console.log(username, password);
     try {
-      await axios.post('http://localhost:3000/api/login', {
+      await axios.post("http://localhost:3000/api/login", {
         username,
         password,
       });
-      router.push('/admin');
+      router.push("/admin");
     } catch (err) {
       setError(true);
       console.log(err);
@@ -28,12 +28,12 @@ const Login = () => {
       <div className={styles.wrapper}>
         <h1>Admin Dashboard</h1>
         <input
-          placeholder='username'
+          placeholder="username"
           className={styles.input}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          placeholder='password'
+          placeholder="password"
           className={styles.input}
           onChange={(e) => setPassword(e.target.value)}
         />

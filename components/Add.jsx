@@ -35,9 +35,9 @@ const Add = ({ setClose }) => {
         "https://api.cloudinary.com/v1_1/dak3dz6xd/image/upload",
         data
       );
-      console.log(uploadRes);
+      // console.log(uploadRes);
       const { url } = uploadRes.data;
-      console.log(url);
+      // console.log(url);
       const newProduct = {
         title,
         desc,
