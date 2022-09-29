@@ -29,13 +29,15 @@ const Add = ({ setClose }) => {
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "uploads");
+    // data.append("upload_preset", "upload2");
     try {
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dsbyq4sj1/image/upload",
+        "https://api.cloudinary.com/v1_1/dak3dz6xd/image/upload",
         data
       );
-
+      console.log(uploadRes);
       const { url } = uploadRes.data;
+      console.log(url);
       const newProduct = {
         title,
         desc,
